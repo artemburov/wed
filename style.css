@@ -1,0 +1,301 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg-1: #faf9f6;
+  --color-bg-2: #f5f2eb;
+  --color-bg-3: #efebe5;
+  --color-bg-4: #eae7e0;
+  --color-bg-5: #e5e2db;
+
+  --color-text-main: #5a4d45;
+  --color-text-accent: #8c7a6d;
+  --color-primary: #a89485;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-1);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Полноэкранные секции */
+.page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  padding: 0 2rem;
+  position: relative;
+}
+
+#home    { background-color: var(--color-bg-1); }
+#details { background-color: var(--color-bg-2); }
+#gallery { background-color: var(--color-bg-3); }
+#rsvp    { background-color: var(--color-bg-4); }
+#thanks  { background-color: var(--color-bg-5); }
+
+/* Контент — всегда по центру, с ограничением ширины */
+.content {
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Заголовки */
+h1, h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-text-main);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 3.8rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+}
+
+.names {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 300;
+  color: var(--color-text-accent);
+  margin: 0.75rem 0 1.25rem;
+  letter-spacing: 1px;
+}
+
+.date {
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  color: var(--color-text-accent);
+  margin-bottom: 2.5rem;
+}
+
+/* Стрелка прокрутки */
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+  color: var(--color-text-accent);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.scroll-down:hover {
+  opacity: 1;
+}
+
+.scroll-down.top {
+  top: 30px;
+  bottom: auto;
+  font-size: 1rem;
+}
+
+/* Форма */
+form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.7);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-main);
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+label {
+  display: block;
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  color: var(--color-text-main);
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.9rem 2rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #968070;
+  transform: translateY(-2px);
+}
+
+/* Галерея-заглушка */
+.photo-placeholder {
+  font-size: 4rem;
+  margin: 1.5rem 0;
+  color: var(--color-primary);
+}
+
+/* Плавный скролл и привязка */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+/* Убираем подчёркивание у ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+  .page {
+    padding: 0 1.2rem;
+  }
+
+  form {
+    gap: 1rem;
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* === СТИЛИЗОВАННЫЕ РАДИОКНОПКИ === */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+  font-size: 1rem;
+  color: var(--color-text-main);
+}
+
+/* Скрываем оригинальные радиокнопки */
+.radio-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Кастомный кружок */
+.radio-custom {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  background: white;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Активное состояние */
+.radio-label input[type="radio"]:checked + .radio-custom {
+  border-color: var(--color-primary);
+  background: white;
+}
+
+/* Точка внутри при выборе */
+.radio-label input[type="radio"]:checked + .radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Текст рядом с кнопкой */
+.radio-text {
+  line-height: 1.4;
+}
+
+/* Секция гостей — скрыта по умолчанию */
+.guests-section {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: none;
+}
+
+.guests-section select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.7);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-main);
+}
+
+/* Убедимся, что textarea и input не "прыгают" */
+#rsvpForm input,
+#rsvpForm textarea,
+#rsvpForm .guests-section select {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+}
